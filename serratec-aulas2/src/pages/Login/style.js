@@ -22,6 +22,7 @@ export const Titulo = styled.Text`
 
 export const TextoMenor = styled.Text`
     color: white;
+    margin: 25px;
 `
 
 

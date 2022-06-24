@@ -1,12 +1,14 @@
-import React, { useState} from 'react';
-import { Text, Input, Icon, Button } from 'react-native-elements';
+import React, { useState } from 'react';
+import { Input, Icon, Button } from 'react-native-elements';
 import { MainBox, SecBox, TextoMenor, Titulo } from './style';
+import { useNavigation } from '@react-navigation/native';
 
 export const Login = (params) => {
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [isLoading, setLoading] = useState(false)
+    const navigation = useNavigation();
 
     const handleLogin = () => {
         console.log(`Email: ${email} - Senha: ${senha}`)
@@ -15,7 +17,8 @@ export const Login = (params) => {
     function load() {
         setTimeout(function() {
             setLoading(e => false)
-        }, 3000)
+            navigation.navigate("Home")
+        }, 1500)
     }
 
     return(
