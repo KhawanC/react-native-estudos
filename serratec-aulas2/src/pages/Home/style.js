@@ -9,7 +9,6 @@ export const Buscador = styled(Input).attrs({
         borderColor: 'black',
         backgroundColor: 'white',
         height: 47,
-        justifyContent: "start",
     },
     inputContainerStyle: {
         borderBottomWidth:0,
@@ -28,7 +27,7 @@ export const RecenteBox = styled.View`
 
 export const DestaqueBox = styled.View`
     padding: 15px;
-    height: 450px;
+    height: 350px;
     margin-bottom: 70px;
 `
 
@@ -45,7 +44,7 @@ export const CateCard = styled.View`
 export const RecenteCard = styled.View`
     border: 1px solid black;
     border-radius: 10px;
-    background-color: #4a6a87;
+    background-color: white;
     width: 110px;
     height: 100%;
     margin-right: 15px;
@@ -61,18 +60,39 @@ export const RecenteImageBox = styled.View`
 
 export const DestaqueImageBox = styled.View`
     width: 100%;
-    height: 70%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
 `
 
 export const RecenteTextBox = styled.View`
     padding: 15px;
     width: 100%;
     height: 40%;
+    justify-content: space-between;
 `
 
 export const DestaqueTextBox = styled.View`
     width: 100%;
-    height: 30%;
+    height: 20%;
+    flex-direction: row;
+    background-color: white;
+    border: 2px solid black;
+`
+
+export const DestaqueTituloDescBox = styled.View`
+    width: 65%;
+    height: 100%;
+    padding: 5px;
+`
+
+export const DestaqueStarBox = styled.View`
+    width: 35%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 `
 
 export const CateName = styled.Text`
@@ -90,4 +110,5 @@ export const RecenteDesc = styled.Text`
 export const Titulo = styled.Text`
     font-size: 30px;
     color: white;
+    margin-top: 25px;
 `

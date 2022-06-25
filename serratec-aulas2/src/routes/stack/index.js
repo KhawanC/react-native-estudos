@@ -30,7 +30,7 @@ const TabNavigator = () => {
             tabBarShowLabel: false,
             tabBarStyle: {
                 position: 'absolute',
-                backgroundColor: "#16212b",
+                backgroundColor: "#0f131a",
                 borderTopColor: 'transparent',
                 borderRadius: 50,
                 marginBottom: 15,
@@ -42,7 +42,7 @@ const TabNavigator = () => {
             <Tab.Screen name='Home' component={Home} options={{
                 title: 'Delivery',
                 headerStyle: {
-                    backgroundColor: '#16212b'
+                    backgroundColor: '#0f131a'
                 }, headerTitleStyle: {
                     fontWeight: 'bold',
                     fontSize: 25,
@@ -55,7 +55,7 @@ const TabNavigator = () => {
             <Tab.Screen name='Categoria' component={Categoria} options={{
                 title: 'Categorias',
                 headerStyle: {
-                    backgroundColor: '#16212b'
+                    backgroundColor: '#0f131a'
                 }, headerTitleStyle: {
                     fontWeight: 'bold',
                     fontSize: 25,
@@ -73,8 +73,9 @@ const TabNavigator = () => {
 export default function() {
     return(
         <Navigator initialRouteName='Login' screenOptions={{headerShown: false}}>
-            <Screen name='home' component={TabNavigator}/>
-            <Screen name='login' component={Login}/>
+            <Screen name='Home' component={TabNavigator}/>
+            <Screen name='Login' component={Login}/>
+            <Screen name='Categoria' component={Categoria}/>
             
         </Navigator>
         

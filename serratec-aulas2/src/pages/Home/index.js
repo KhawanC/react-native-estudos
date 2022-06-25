@@ -1,9 +1,12 @@
-import React from 'react';
-import { FlatList, SafeAreaView, ScrollView, View, Image } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, SafeAreaView, ScrollView, View, Image, Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Buscador, CateBox, CateCard, CateName, DestaqueBox, DestaqueImageBox, DestaqueTextBox, MainBox, RecenteBox, RecenteCard, RecenteDesc, RecenteImageBox, RecenteTextBox, RecenteTitulo, Titulo } from './style';
+import { Ionicons } from '@expo/vector-icons'
+import { Buscador, CateBox, CateCard, CateName, DestaqueBox, DestaqueImageBox, DestaqueStarBox, DestaqueTextBox, DestaqueTituloDescBox, MainBox, RecenteBox, RecenteCard, RecenteDesc, RecenteImageBox, RecenteTextBox, RecenteTitulo, Titulo } from './style';
 
 export const Home = (params) => {
+
+    const [contador, setContador] = useState(0)
 
     const categorias = [
         {
@@ -56,9 +59,105 @@ export const Home = (params) => {
     ]
 
     const destaque = [
-        
-    ] 
-    
+        {
+            id: 0,
+            info:[
+                'https://www.globeholidays.net/Central_America/Jamaica/Media/Jamaica_Ackee_and_Saltfish.jpg',
+                'Ackee e Peixe Salgado',
+                'O ackee e o peixe-salgado são amplamente considerados o prato nacional da Jamaica.',
+                4
+            ]
+        },
+        {
+            id: 1,
+            info:[
+                'https://cardapio.menu/storage/media/dishes_main/1299443/conversions/dish_thumbnail.jpg',
+                'Wiener Schnitzel',
+                'Bem parecido com o bife empanado, o prato mais tradicional da Áustria é preparado com os melhores ingredientes e servido fresco',
+                5
+            ]
+        },
+        {
+            id: 2,
+            info:[
+                'https://static.paodeacucar.com/img/uploads/1/477/23056477.jpg',
+                'Paella Valenciana',
+                'Um ícone da Espanha. Apesar de existirem diversas formas de prepará-la, a verdade é que todas as suas versões são deliciosas.',
+                4
+            ]
+        },
+        {
+            id: 3,
+            info:[
+                'https://www.comidaereceitas.com.br/wp-content/uploads/2021/07/feijoada_veveta-780x503.jpg',
+                'Feijoada',
+                'Feijoada é uma designação comum dada a pratos da culinária de regiões e países lusófonos.',
+                5
+            ]
+        },
+        {
+            id: 4,
+            info:[
+                'https://www.unileverfoodsolutions.com.br/dam/global-ufs/mcos/SLA/calcmenu/recipes/BR-recipes/fish-&-other-seafood-dishes/moqueca-r%C3%A1pida/main-header.jpg',
+                'Moqueca',
+                'Prato típico dos estados do Pará, da Bahia e do Espírito Santo. Pode ser preparada com peixe, mariscos, crustáceos, galinha ou ovos de galinha.',
+                5
+            ]
+        },
+        {
+            id: 5,
+            info:[
+                'https://www.receiteria.com.br/wp-content/uploads/receitas-de-tonkatsu-1.jpg',
+                'Tonkatsu',
+                'uma costeleta de porco frita e empanada fatiada em pequenos pedaços. Geralmente servida com repolho picado e/ou sopa de missô.',
+                5
+            ]
+        },
+
+    ]
+
+    function renderEstrelas(id) {
+        let listEstrela = []
+        for(let i = 0; i < destaque[id].info[3]; i++) {
+            listEstrela.push(<Ionicons name={'star-outline'} size={20} color={'black'} />)
+        }
+        return <>{listEstrela}</>
+    }
+
+    function renderDestaque(index) {
+
+        setTimeout(function() {
+            if((contador + 1) !== 5) {
+                setContador(e => e + 1)
+            } else {
+                setContador(e => 0)
+            }
+        }, 6000)
+        return <DestaqueBox key={destaque[index].id}>
+            <DestaqueImageBox>
+            <Image
+                style={{width: '100%', height: '100%'}}
+                source={{
+                uri: destaque[contador].info[0],
+                }}
+            />
+            </DestaqueImageBox>
+            <DestaqueTextBox>
+                <DestaqueTituloDescBox>
+                    <Text style={{
+                        fontWeight: 'bold'
+                    }}>{destaque[index].info[1]}</Text>
+                    <Text style={{
+                        fontSize: 11,
+                        marginTop: 5
+                    }}>{destaque[index].info[2]}</Text>
+                </DestaqueTituloDescBox>
+                <DestaqueStarBox>
+                        {renderEstrelas(index)}
+                </DestaqueStarBox>
+            </DestaqueTextBox>
+        </DestaqueBox>
+    }
     
     return(
             <ScrollView style={{
@@ -106,14 +205,7 @@ export const Home = (params) => {
                             />
                     </RecenteBox>
                     <Titulo>Destaques</Titulo>
-                    <DestaqueBox>
-                        <DestaqueImageBox>
-                            
-                        </DestaqueImageBox>
-                        <DestaqueTextBox>
-                            
-                        </DestaqueTextBox>
-                    </DestaqueBox>
+                    {renderDestaque(contador)}
             </ScrollView>
     )
 };

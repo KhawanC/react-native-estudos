@@ -9,7 +9,6 @@ export const Buscador = styled(Input).attrs({
         borderColor: 'black',
         backgroundColor: 'white',
         height: 47,
-        justifyContent: "start",
     },
     inputContainerStyle: {
         borderBottomWidth:0,
