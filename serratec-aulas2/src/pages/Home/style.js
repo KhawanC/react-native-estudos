@@ -2,9 +2,9 @@ import { Icon, Input } from "react-native-elements";
 import styled from "styled-components";
 
 export const MainBox = styled.View`
-    flex: 1;
     background-color: #192734;
     padding: 15px;
+    height: 100%;
 `
 
 export const Buscador = styled(Input).attrs({
@@ -13,7 +13,7 @@ export const Buscador = styled(Input).attrs({
         borderWidth: 1,
         borderColor: 'black',
         backgroundColor: 'white',
-        height: "8%",
+        height: "14%",
         justifyContent: "start",
     },
     inputContainerStyle: {
@@ -23,12 +23,12 @@ export const Buscador = styled(Input).attrs({
 
 export const CateBox = styled.View`
     padding: 15px;
-    height: 25%;
+    height: 40%;
 `
 
 export const RecenteBox = styled.View`
     padding: 15px;
-    height: 30%;
+    height: 60%;
 `
 
 export const DestaqueBox = styled.View`

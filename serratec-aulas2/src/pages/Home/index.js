@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, ScrollView } from 'react-native';
+import { FlatList, ScrollView, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Navbar } from '../../components/Navbar';
 import { Buscador, CateBox, CateCard, CateName, DestaqueBox, MainBox, RecenteBox, RecenteCard, RecenteDesc, RecenteImageBox, RecenteTextBox, RecenteTitulo, Titulo } from './style';
@@ -81,8 +81,8 @@ export const Home = (params) => {
     
     
     return(
-        <>
-            <Navbar/>
+        <MainBox>
+            <ScrollView>
             <MainBox>
                 <Buscador/>
                 <CateBox>
@@ -118,7 +118,7 @@ export const Home = (params) => {
 
                 </DestaqueBox>
             </MainBox>
-            
-        </>
+            </ScrollView>
+        </MainBox>
     )
 };

@@ -17,9 +17,14 @@ const TabNavigator = () => {
                 color: 'black'
             },
             tabBarStyle: {
+                position: 'absolute',
                 backgroundColor: "#16212b",
                 borderTopColor: 'transparent',
-                paddingBottom: '2%',
+                borderRadius: 50,
+                marginBottom: 15,
+                marginLeft: 25,
+                marginRight: 25,
+                zIndex: 2
             }, tabBarActiveTintColor: '#fff',
         }}>
             <Tab.Screen name='Home' component={Home} tabBarIconStyle/>
