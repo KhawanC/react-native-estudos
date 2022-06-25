@@ -31,6 +31,12 @@ export const RecenteBox = styled.View`
     height: 30%;
 `
 
+export const DestaqueBox = styled.View`
+    padding: 15px;
+    height: 30%;
+    border: 1px solid red;
+`
+
 export const CateCard = styled.View`
     border: 1px solid black;
     background-color: #4a6a87;
@@ -52,12 +58,14 @@ export const RecenteCard = styled.View`
 
 export const RecenteImageBox = styled.View`
     background-color: white;
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
     width: 100%;
     height: 60%;
 `
 
 export const RecenteTextBox = styled.View`
-    padding: 10px;
+    padding: 15px;
     width: 100%;
     height: 40%;
 `
@@ -73,6 +81,8 @@ export const RecenteTitulo = styled.Text`
 export const RecenteDesc = styled.Text`
     font-size: 15px;
 `
+
+
 
 export const Titulo = styled.Text`
     font-size: 30px;
