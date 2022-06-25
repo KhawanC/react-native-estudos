@@ -54,62 +54,66 @@ export const Home = (params) => {
             info: ['Leite ConMorango', 'R$ 15,00', 'https://s2.glbimg.com/fZnGZPfpFwQUOavBv3G6o0Z0O1Y=/0x0:1280x960/984x0/smart/filters:strip_icc()/s.glbimg.com/po/rc/media/2012/09/07/18_09_46_143_100_0125.JPG']
         },
     ]
+
+    const destaque = [
+        
+    ] 
     
     
     return(
             <ScrollView style={{
                 width: '100%',
-                backgroundColor: '#192734'
+                paddingRight: 15,
+                paddingLeft: 15,
+                backgroundColor: '#192734',
             }}>
-            <MainBox>
                 <Buscador/>
                 <CateBox>
-                    <FlatList
-                        data={categorias}
-                        horizontal
-                        keyExtractor={item => item.id}
-                        renderItem={({item}) => <CateCard>
-                            <Image key={item.id}
-                                style={{width: '100%', height: '100%'}}
-                                source={{
-                                uri: item.img[0],
-                                }}
+                        <FlatList
+                            data={categorias}
+                            horizontal
+                            keyExtractor={item => item.id}
+                            renderItem={({item}) => <CateCard>
+                                <Image key={item.id}
+                                    style={{width: '100%', height: '100%'}}
+                                    source={{
+                                    uri: item.img[0],
+                                    }}
+                                />
+                            </CateCard>}
+                        />
+                    </CateBox>
+                    <Titulo>Recentes</Titulo>
+                    <RecenteBox>
+                        <FlatList
+                                data={recente}
+                                horizontal
+                                keyExtractor={item => item.id}
+                                renderItem={({item}) => <RecenteCard>
+                                                            <RecenteImageBox>
+                                                            <Image key={item.id}
+                                                                style={{width: '100%', height: '100%'}}
+                                                                source={{
+                                                                uri: item.info[2],
+                                                                }}
+                                                            />
+                                                            </RecenteImageBox>
+                                                            <RecenteTextBox>
+                                                                <RecenteTitulo>{item.info[0]}</RecenteTitulo>
+                                                                <RecenteDesc>{item.info[1]}</RecenteDesc>
+                                                            </RecenteTextBox>
+                                                        </RecenteCard>}
                             />
-                        </CateCard>}
-                    />
-                </CateBox>
-                <Titulo>Recentes</Titulo>
-                <RecenteBox>
-                <FlatList
-                        data={recente}
-                        horizontal
-                        keyExtractor={item => item.id}
-                        renderItem={({item}) => <RecenteCard>
-                                                    <RecenteImageBox>
-                                                    <Image key={item.id}
-                                                        style={{width: '100%', height: '100%'}}
-                                                        source={{
-                                                        uri: item.info[2],
-                                                        }}
-                                                    />
-                                                    </RecenteImageBox>
-                                                    <RecenteTextBox>
-                                                        <RecenteTitulo>{item.info[0]}</RecenteTitulo>
-                                                        <RecenteDesc>{item.info[1]}</RecenteDesc>
-                                                    </RecenteTextBox>
-                                                </RecenteCard>}
-                    />
-                </RecenteBox>
-                <Titulo>Destaques</Titulo>
-                <DestaqueBox>
-                    <DestaqueImageBox>
-
-                    </DestaqueImageBox>
-                    <DestaqueTextBox>
-                        
-                    </DestaqueTextBox>
-                </DestaqueBox>
-            </MainBox>
+                    </RecenteBox>
+                    <Titulo>Destaques</Titulo>
+                    <DestaqueBox>
+                        <DestaqueImageBox>
+                            
+                        </DestaqueImageBox>
+                        <DestaqueTextBox>
+                            
+                        </DestaqueTextBox>
+                    </DestaqueBox>
             </ScrollView>
     )
 };

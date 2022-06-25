@@ -1,12 +1,6 @@
 import { Icon, Input } from "react-native-elements";
 import styled from "styled-components";
 
-export const MainBox = styled.View`
-    background-color: #192734;
-    padding: 0 15px 0 15px;
-    height: 100%;
-`
-
 export const Buscador = styled(Input).attrs({
     leftIcon: <Icon name='search' color='black' size={29}/>,
     containerStyle: {
@@ -14,7 +8,7 @@ export const Buscador = styled(Input).attrs({
         borderWidth: 1,
         borderColor: 'black',
         backgroundColor: 'white',
-        height: "14%",
+        height: 47,
         justifyContent: "start",
     },
     inputContainerStyle: {
@@ -24,18 +18,18 @@ export const Buscador = styled(Input).attrs({
 
 export const CateBox = styled.View`
     padding: 15px;
-    height: 40%;
+    height: 140px;
 `
 
 export const RecenteBox = styled.View`
     padding: 15px;
-    height: 60%;
+    height: 200px;
 `
 
 export const DestaqueBox = styled.View`
     padding: 15px;
-    height: 100%;
-    border: 1px solid red;
+    height: 450px;
+    margin-bottom: 70px;
 `
 
 export const CateCard = styled.View`
@@ -66,7 +60,6 @@ export const RecenteImageBox = styled.View`
 `
 
 export const DestaqueImageBox = styled.View`
-    background-color: '#ffffff';
     width: 100%;
     height: 70%;
 `
@@ -78,7 +71,6 @@ export const RecenteTextBox = styled.View`
 `
 
 export const DestaqueTextBox = styled.View`
-    background-color: green;
     width: 100%;
     height: 30%;
 `
