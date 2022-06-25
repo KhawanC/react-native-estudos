@@ -28,34 +28,19 @@ export const Categoria = (params) => {
         },
         {
             id: 5,
-            img: ['Categoria 5']
+            img: ['http://rossopizza.com.br/salao/wp-content/uploads/2019/09/istock-181175167-900x600.jpg']
 
         },
         {
             id: 6,
-            img: ['Categoria 6']
+            img: ['https://receitaculinaria.com.br/wp-content/uploads/2020/11/sobremesa-gelada-sensacao-mega-f.jpg']
 
         },
         {
             id: 7,
-            img: ['Categoria 7']
+            img: ['http://i.mlcdn.com.br/portaldalu/fotosconteudo/43346.jpg']
 
-        },
-        {
-            id: 8,
-            img: ['Categoria 8']
-
-        },
-        {
-            id: 9,
-            img: ['Categoria 9']
-
-        },
-        {
-            id: 10,
-            img: ['Categoria 10']
-
-        },
+        }
     ]
 
     return(
@@ -71,7 +56,7 @@ export const Categoria = (params) => {
                  {categorias.map(a => {
                     return <>
                         <CategoriaCard key={a.id}>
-                            <Image
+                            <Image key={a.id}
                                 style={{width: 150, height: 150}}
                                 source={{
                                 uri: a.img[0],

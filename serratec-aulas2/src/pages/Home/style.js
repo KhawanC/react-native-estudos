@@ -88,7 +88,7 @@ export const CateName = styled.Text`
 `
 
 export const RecenteTitulo = styled.Text`
-    font-size: 20px;
+    font-size: 15px;
 `
 
 export const RecenteDesc = styled.Text`
