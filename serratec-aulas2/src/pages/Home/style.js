@@ -3,13 +3,14 @@ import styled from "styled-components";
 
 export const MainBox = styled.View`
     background-color: #192734;
-    padding: 15px;
+    padding: 0 15px 0 15px;
     height: 100%;
 `
 
 export const Buscador = styled(Input).attrs({
     leftIcon: <Icon name='search' color='black' size={29}/>,
     containerStyle: {
+        marginTop: 20,
         borderWidth: 1,
         borderColor: 'black',
         backgroundColor: 'white',
@@ -33,7 +34,7 @@ export const RecenteBox = styled.View`
 
 export const DestaqueBox = styled.View`
     padding: 15px;
-    height: 30%;
+    height: 100%;
     border: 1px solid red;
 `
 
@@ -64,10 +65,22 @@ export const RecenteImageBox = styled.View`
     height: 60%;
 `
 
+export const DestaqueImageBox = styled.View`
+    background-color: '#ffffff';
+    width: 100%;
+    height: 70%;
+`
+
 export const RecenteTextBox = styled.View`
     padding: 15px;
     width: 100%;
     height: 40%;
+`
+
+export const DestaqueTextBox = styled.View`
+    background-color: green;
+    width: 100%;
+    height: 30%;
 `
 
 export const CateName = styled.Text`
@@ -81,8 +94,6 @@ export const RecenteTitulo = styled.Text`
 export const RecenteDesc = styled.Text`
     font-size: 15px;
 `
-
-
 
 export const Titulo = styled.Text`
     font-size: 30px;
