@@ -9,22 +9,36 @@ export const Home = ({route, navigation}) => {
 
     const [contador, setContador] = useState(0)
     const [categorias, setCategoria] = useState([])
+    const [recente, setRecente] = useState([])
+    const [produtos, setProdutos] = useState([])
     const {token} = route.params
+
+    function getRandomRum(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
     
     const getDadosCategoria = async () => {
-        console.log(contador)
-        AxiosInstance.get(
-            '/categoria',
-            {headers: {"Authorization": `Bearer ${token}`}}
-        ).then(res => {
-            setCategoria(res.data)
-            console.log(res.data)
-        }).catch((error) => {
-            console.log('deu erro')
-        });
+        const res = await AxiosInstance.get('/categoria',{headers: {"Authorization": `Bearer ${token}`}})
+        setCategoria(res.data)
+    }
+
+    const getDadosProduto = async () => {
+        try {
+            const res = await AxiosInstance.get('/produto',{headers: {"Authorization": `Bearer ${token}`}})
+            setProdutos(res.data)
+            for (let i = 0; i < 5; i++) {
+                aleatNum = getRandomRum(0, (res.data.length - 1))
+                recente.push(res.data[aleatNum])
+            }
+            console.log(recente)
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
     useEffect(() => {
+        getDadosProduto()
         getDadosCategoria()
     }, [])
 
@@ -37,29 +51,6 @@ export const Home = ({route, navigation}) => {
             }
         }, 6000)
     }, [contador])
-
-    const recente = [
-        {
-            id: 1,
-            info: ['Sashimi', 'R$ 2,80', 'https://www.sabornamesa.com.br/images/receitas/pins_image/r1108-sashimi-pin.jpg']
-        },
-        {
-            id: 2,
-            info: ['Missô', 'R$ 8,10', 'https://images.aws.nestle.recipes/resized/5afb571c38254395f7268e7ff29d5cae_missoshiro-receitas-nestle_768_384.jpg']
-        },
-        {
-            id: 3,
-            info: ['Hot Roll', 'R$ 5,80', 'https://www.djapa.com.br/wp-content/uploads/2021/01/hot-roll-980x654.jpg']
-        },
-        {
-            id: 4,
-            info: ['Espaguete à carbonara', 'R$ 35,00', 'https://static.clubedaanamariabraga.com.br/wp-content/uploads/2017/08/espaguete-a-carbonara-1024x576.jpg']
-        },
-        {
-            id: 5,
-            info: ['Leite ConMorango', 'R$ 15,00', 'https://s2.glbimg.com/fZnGZPfpFwQUOavBv3G6o0Z0O1Y=/0x0:1280x960/984x0/smart/filters:strip_icc()/s.glbimg.com/po/rc/media/2012/09/07/18_09_46_143_100_0125.JPG']
-        },
-    ]
 
     const destaque = [
         {
@@ -181,22 +172,21 @@ export const Home = ({route, navigation}) => {
                         <FlatList
                                 data={recente}
                                 horizontal
-                                keyExtractor={item => item.id}
-                                renderItem={({item}) => <RecenteCard key={item.id}>
+                                keyExtractor={item => item.idProduto}
+                                renderItem={({item}) => <RecenteCard>
                                                             <RecenteImageBox>
                                                             <Image
                                                                 style={{width: '100%', height: '100%'}}
                                                                 source={{
-                                                                uri: item.info[2],
+                                                                uri: item.imagemProduto,
                                                                 }}
                                                             />
                                                             </RecenteImageBox>
                                                             <RecenteTextBox>
-                                                                <RecenteTitulo>{item.info[0]}</RecenteTitulo>
-                                                                <RecenteDesc>{item.info[1]}</RecenteDesc>
+                                                                <RecenteTitulo>{item.nomeProduto}</RecenteTitulo>
+                                                                <RecenteDesc>R$ {item.precoProduto}</RecenteDesc>
                                                             </RecenteTextBox>
-                                                        </RecenteCard>}
-                            />
+                                                        </RecenteCard>}/>
                     </RecenteBox>
                     <Titulo>Destaques</Titulo>
                     {renderDestaque(contador)}
