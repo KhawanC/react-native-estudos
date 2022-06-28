@@ -35,11 +35,6 @@ const TabNavigator = () => {
                 position: 'absolute',
                 backgroundColor: "#0f131a",
                 borderTopColor: 'transparent',
-                borderRadius: 50,
-                marginBottom: 15,
-                marginLeft: 25,
-                marginRight: 25,
-                zIndex: 2
             }
           })}>
             <Tab.Screen name='Home' component={Home} options={{

@@ -8,7 +8,7 @@ import AxiosInstance from '../../api/Api';
 export const Home = ({route, navigation}) => {
 
     const [contador, setContador] = useState(0)
-    const [categoria2, setCategoria2] = useState([])
+    const [categorias, setCategoria] = useState([])
     const {token} = route.params
     
     const getDadosCategoria = async () => {
@@ -17,43 +17,26 @@ export const Home = ({route, navigation}) => {
             '/categoria',
             {headers: {"Authorization": `Bearer ${token}`}}
         ).then(res => {
-            setCategoria2(res.data)
+            setCategoria(res.data)
+            console.log(res.data)
         }).catch((error) => {
             console.log('deu erro')
-            console.log(JSON.stringify(error))
         });
     }
 
-    // useEffect(() => {
-    //     getDadosCategoria()
-    // }, [])
+    useEffect(() => {
+        getDadosCategoria()
+    }, [])
 
-    const categorias = [
-        {
-            id: 1,
-            img:['https://cptstatic.s3.amazonaws.com/imagens/enviadas/materias/materia27698/culinaria-mineira-cpt.jpg']
-        },
-        {
-            id: 2,
-            img:['https://www.saudeemdia.com.br/media/_versions/shutterstock_1021367641_2_widexl.jpg']
-
-        },
-        {
-            id: 3,
-            img:['https://diariodonordeste.verdesmares.com.br/image/contentid/policy:1.2218166:1589929719/prato-do-restaurante-mistura-baiana.jpg?f=16x9&h=720&q=0.8&w=1280&$p$f$h$q$w=9c7700c']
-
-        },
-        {
-            id: 4,
-            img:['https://receitaculinaria.com.br/wp-content/uploads/2020/11/sobremesa-gelada-sensacao-mega-f.jpg']
-
-        },
-        {
-            id: 5,
-            img:['https://img.jakpost.net/c/2016/09/29/2016_09_29_12990_1475116504._large.jpg']
-
-        }
-    ]
+    useEffect(() => {
+        setTimeout(function() {
+            if((contador + 1) !== 5) {
+                setContador(e => e + 1)
+            } else {
+                setContador(e => 0)
+            }
+        }, 6000)
+    }, [contador])
 
     const recente = [
         {
@@ -145,13 +128,6 @@ export const Home = ({route, navigation}) => {
     }
 
     function renderDestaque(index) {
-        setTimeout(function() {
-            if((contador + 1) !== 5) {
-                setContador(e => e + 1)
-            } else {
-                setContador(e => 0)
-            }
-        }, 6000)
         return <DestaqueBox key={destaque[index].id}>
             <DestaqueImageBox>
             <Image
@@ -190,12 +166,12 @@ export const Home = ({route, navigation}) => {
                         <FlatList
                             data={categorias}
                             horizontal
-                            keyExtractor={item => item.id}
+                            keyExtractor={item => item.idCategoria}
                             renderItem={({item}) => <CateCard>
-                                <Image key={item.id}
+                                <Image
                                     style={{width: '100%', height: '100%'}}
                                     source={{
-                                    uri: item.img[0],
+                                    uri: item.nomeImagem,
                                     }}/>
                             </CateCard>}
                         />
@@ -206,9 +182,9 @@ export const Home = ({route, navigation}) => {
                                 data={recente}
                                 horizontal
                                 keyExtractor={item => item.id}
-                                renderItem={({item}) => <RecenteCard>
+                                renderItem={({item}) => <RecenteCard key={item.id}>
                                                             <RecenteImageBox>
-                                                            <Image key={item.id}
+                                                            <Image
                                                                 style={{width: '100%', height: '100%'}}
                                                                 source={{
                                                                 uri: item.info[2],
