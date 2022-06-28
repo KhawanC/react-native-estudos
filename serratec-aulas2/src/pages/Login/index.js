@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Icon, Button } from 'react-native-elements';
 import { MainBox, SecBox, TextoMenor, Titulo } from './style';
 import { useNavigation } from '@react-navigation/native';
+import { LoginService } from '../../services/LoginService';
+import AxiosInstance from '../../api/Api';
 
 export const Login = (params) => {
 
@@ -10,14 +12,24 @@ export const Login = (params) => {
     const [isLoading, setLoading] = useState(false)
     const navigation = useNavigation();
 
-    const handleLogin = () => {
-        console.log(`Email: ${email} - Senha: ${senha}`)
+    const loadToken = async() => {
+        const resLogin = await LoginService(email, senha)
+        if(resLogin.token != null) {
+            navigation.navigate("Home", {
+                screen: 'Home',
+                params: {
+                    token: resLogin.token
+                }
+            })
+        } else {
+            console.log(resLogin.token)
+        }
     }
 
     function load() {
         setTimeout(function() {
             setLoading(e => false)
-            navigation.navigate("Home")
+            loadToken()
         }, 1500)
     }
 
@@ -48,7 +60,7 @@ export const Login = (params) => {
                         width: 150,
                         margin: 20}}
                     title='Entrar'
-                    onPress={() => {setLoading(e => true); load(); handleLogin()}}
+                    onPress={() => {setLoading(e => true); load()}}
                 /> : <Button
                         loading
                     buttonStyle={{

@@ -107,7 +107,6 @@ export default function() {
             <Screen name='Categoria' component={Categoria}/>
             <Screen name='Favorito' component={Favorito}/>
             <Screen name='Carrinho' component={Carrinho}/>
-            
         </Navigator>
         
     )

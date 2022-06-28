@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView, ScrollView, View, Image, Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons'
 import { Buscador, CateBox, CateCard, CateName, DestaqueBox, DestaqueImageBox, DestaqueStarBox, DestaqueTextBox, DestaqueTituloDescBox, MainBox, RecenteBox, RecenteCard, RecenteDesc, RecenteImageBox, RecenteTextBox, RecenteTitulo, Titulo } from './style';
+import AxiosInstance from '../../api/Api';
 
-export const Home = (params) => {
+export const Home = ({route, navigation}) => {
 
     const [contador, setContador] = useState(0)
+    const [categoria2, setCategoria2] = useState([])
+    const {token} = route.params
+    
+    const getDadosCategoria = async () => {
+        console.log(contador)
+        AxiosInstance.get(
+            '/categoria',
+            {headers: {"Authorization": `Bearer ${token}`}}
+        ).then(res => {
+            setCategoria2(res.data)
+        }).catch((error) => {
+            console.log('deu erro')
+            console.log(JSON.stringify(error))
+        });
+    }
+
+    // useEffect(() => {
+    //     getDadosCategoria()
+    // }, [])
 
     const categorias = [
         {
@@ -125,7 +145,6 @@ export const Home = (params) => {
     }
 
     function renderDestaque(index) {
-
         setTimeout(function() {
             if((contador + 1) !== 5) {
                 setContador(e => e + 1)
@@ -177,8 +196,7 @@ export const Home = (params) => {
                                     style={{width: '100%', height: '100%'}}
                                     source={{
                                     uri: item.img[0],
-                                    }}
-                                />
+                                    }}/>
                             </CateCard>}
                         />
                     </CateBox>
